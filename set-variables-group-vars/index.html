@@ -863,6 +863,11 @@
 <td style="text-align: left;">(Optional) The absolute path to the public key file on the jumphost to be copied to the bastion.</td>
 <td style="text-align: left;">/home/admin/.ssh/id_rsa.pub</td>
 </tr>
+<tr>
+<td style="text-align: left;"><strong>env.ipsec_enabled</strong></td>
+<td style="text-align: left;">(Optional) If IPSEC network configuration has to be enabled, this flag should be set to true</td>
+<td style="text-align: left;"></td>
+</tr>
 </tbody>
 </table>
 <h2 id="12-ocp-and-rhcos-coreos">12 - OCP and RHCOS (CoreOS)<a class="headerlink" href="#12-ocp-and-rhcos-coreos" title="Permanent link">#</a></h2>
@@ -1000,12 +1005,22 @@
 <tr>
 <td style="text-align: left;"><strong>abi.ocp_installer_version</strong></td>
 <td style="text-align: left;">Version will contain value of openshift-installer binary version user desired to be used</td>
-<td style="text-align: left;">'4.15.0-rc.8'</td>
+<td style="text-align: left;">'4.15.8'</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>abi.ocp_installer_url</strong></td>
+<td style="text-align: left;"><strong>abi.ocp_installer_base_url</strong></td>
 <td style="text-align: left;">This is the base url of openshift installer binary it will remain same as static value, User Do not need to give value until user wants to change the mirror</td>
-<td style="text-align: left;">'https://mirror.openshift.com/pub/openshift-v4/s390x/clients/ocp/'</td>
+<td style="text-align: left;">'https://mirror.openshift.com/pub/openshift-v4/'</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>abi.architecture</strong></td>
+<td style="text-align: left;">The installer binary supports two architecture options: multi and s390x. Users are required to specify the appropriate architecture value based on their deployment environment.</td>
+<td style="text-align: left;">'multi/s390x'</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>abi.boot_method</strong></td>
+<td style="text-align: left;">Specifies the boot type for Agent-based Installation (ABI). Users must choose either iso or pxe based on the deployment method. Note: iso boot is supported only on KVM platforms.</td>
+<td style="text-align: left;">'iso/pxe'</td>
 </tr>
 </tbody>
 </table>
@@ -1355,9 +1370,9 @@
 <td style="text-align: left;">engine</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>hcp.mce.catalogsource_name</strong></td>
-<td style="text-align: left;">Name of the catalogsource for operatorhub</td>
-<td style="text-align: left;">redhat-operators</td>
+<td style="text-align: left;"><strong>hcp.mce.catalogsource_image</strong></td>
+<td style="text-align: left;">Image ID for installing MCE</td>
+<td style="text-align: left;">970287</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>hcp.mce.delete</strong></td>
@@ -1498,6 +1513,16 @@
 <td style="text-align: left;"><strong>hcp.bastion_params.interface</strong></td>
 <td style="text-align: left;">Interface for bastion</td>
 <td style="text-align: left;">enc1</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>hcp.bastion_params.hipersockets</strong></td>
+<td style="text-align: left;">Hipersockets card details for bastion</td>
+<td style="text-align: left;">0.0.f000,0.0.f001,0.0.f002</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>hcp.bastion_params.user_id</strong></td>
+<td style="text-align: left;">user id for bastion to attach hipersocket interface</td>
+<td style="text-align: left;">m1317008</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>hcp.bastion_params.file_server.ip</strong></td>
